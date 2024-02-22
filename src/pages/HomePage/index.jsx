@@ -1,19 +1,6 @@
-import { useEffect, useState } from "react";
-import { getBeers } from "../../services/punkService";
 import { Link } from "react-router-dom";
 
 export const HomePage = () => {
-	const [beers, setBeers] = useState([]);
-
-	const retrieveBeers = async () => {
-		const { data, err } = await getBeers();
-		if (!err) setBeers(data);
-	};
-
-	useEffect(() => {
-		retrieveBeers();
-	}, []);
-
 	return (
 		<main>
 			<h1>Brews 101 Session</h1>
@@ -24,27 +11,19 @@ export const HomePage = () => {
 				planeta.
 			</p>
 			<ul className="beers-list">
-				{beers.map((beer, idx) => {
-					return (
-						<Link key={idx} to={`/${beer.id}`}>
-							<li className="beer-item">
-								<div className="beer-el">
-									<picture className="beer-el__pic">
-										<img
-											className="beer-el__img"
-											src={beer.image_url}
-											alt={beer.name}
-										/>
-									</picture>
-									<div className="beer-el__info-containe">
-										<h2 className="beer-el__title">{beer.name}</h2>
-										<p className="beer-el__description">{beer.tagline}</p>
-									</div>
-								</div>
-							</li>
-						</Link>
-					);
-				})}
+				<Link>
+					<li className="beer-item">
+						<div className="beer-el">
+							<picture className="beer-el__pic">
+								<img className="beer-el__img" />
+							</picture>
+							<div className="beer-el__info-containe">
+								<h2 className="beer-el__title"></h2>
+								<p className="beer-el__description"></p>
+							</div>
+						</div>
+					</li>
+				</Link>
 			</ul>
 		</main>
 	);

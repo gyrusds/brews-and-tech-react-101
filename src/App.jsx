@@ -1,12 +1,7 @@
 import "./App.css";
-import Router from "./pages/router";
 
 function App() {
-	return (
-		<>
-			<Router />
-		</>
-	);
+	return <>welcome to brews&tech</>;
 }
 
 export default App;
