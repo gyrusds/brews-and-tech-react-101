@@ -1,13 +1,18 @@
-import { Outlet } from "react-router-dom";
 import { Layout } from "../components/Layout";
-import { getBeers, getRandomBeer } from "../services/punkService";
+import { getBeer, getBeers, getRandomBeer } from "../services/punkService";
 import { BeerPage } from "./BeerPage";
+import { ErrorPage } from "./ErrorPage";
 import { HomePage } from "./HomePage";
 
 const pages = [
 	{
 		path: "/",
 		element: <Layout />,
+		errorElement: (
+			<>
+				<ErrorPage />
+			</>
+		),
 		children: [
 			{
 				path: "/",
@@ -22,7 +27,7 @@ const pages = [
 				element: <BeerPage />,
 				loader: async ({ params }) => {
 					const { id } = params;
-					const { data } = await getBeers(id);
+					const { data } = await getBeer(id);
 					return data?.[0];
 				},
 			},
