@@ -1,18 +1,7 @@
-import { useEffect, useState } from "react";
-import { getBeers } from "../../services/punkService";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export const HomePage = () => {
-	const [beers, setBeers] = useState([]);
-
-	const retrieveBeers = async () => {
-		const { data, err } = await getBeers();
-		if (!err) setBeers(data);
-	};
-
-	useEffect(() => {
-		retrieveBeers();
-	}, []);
+	const beers = useLoaderData();
 
 	return (
 		<main>
